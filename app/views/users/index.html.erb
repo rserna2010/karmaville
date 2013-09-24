@@ -1,0 +1,44 @@
+<h1>KarmaVille's Most Famous</h1>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Karma</th>
+    <th>Name</th>
+    <th>Username</th>
+    <th>Email</th>
+  </tr>
+  <% @users.each do |user| %>
+    <%= render 'user_row', :user => user %>
+  <% end %>
+</table>
+  
+
+
+<div class="pagination">
+<ul class="pagination">
+  <% unless @page == 1 %>
+    <li><%= link_to "Previous", '/?pages=' + (@page-1).to_s %></li> 
+  <% end %>  
+  
+  <% unless @page <= 10 %>
+    <li><%= link_to "Back 10", '/?pages=' + (@page-10).to_s %></li>
+  <% end %>  
+
+  <% unless @page <= 1000 %>
+    <li><%= link_to "Rewind 1000", '/?pages=' + (@page-1000).to_s %></li>
+  <% end %>  
+
+  <% unless @page > @user_count - 10 %>
+    <li><%= link_to "Forward 10", '/?pages=' + (@page+10).to_s %></li>
+  <% end %>    
+
+  <% unless @page > @user_count - 1000 %>
+    <li><%= link_to "Fast Forward 1000", '/?pages=' + (@page+1000).to_s %></li>
+  <% end %>  
+
+  <% unless @page == @user_count %>
+      <li><%= link_to "Next", '/?pages=' + (@page+1).to_s %></li>
+  <% end %>  
+
+</ul>
+</div>
